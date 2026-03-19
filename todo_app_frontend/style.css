@@ -1,0 +1,325 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+  background-image: url(./assets/img3.avif);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 600px;
+}
+
+.row {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 40px;
+}
+
+.formSection {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.formSection label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.formSection input[type="text"] {
+  padding: 15px;
+  font-size: 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.formSection input[type="text"]:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.formSection button {
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.formSection button:hover {
+  transform: translateY(-2px);
+  transform: translateX(2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.formSection button:active {
+  transform: translateY(0);
+}
+
+.taskHeadNFilters {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.TaskStack ul {
+  list-style: none;
+  padding: 0;
+}
+
+.taskPlace {
+  overflow: hidden;
+  overflow-y: scroll;
+  max-height: 194px;
+}
+.taskPlace::-webkit-scrollbar {
+  width: 8px;
+}
+.taskPlace::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #f1f1f1;
+}
+.taskPlace::-webkit-scrollbar-thumb {
+  background-color: #667eea;
+  border-radius: 10px;
+}
+.taskPlace::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.TaskStack ul li {
+  display: flex;
+  align-items: center;
+  /* flex-direction: column; */
+  gap: 10px;
+  margin-bottom: 8px;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border-left: 4px solid #667eea;
+  font-size: 16px;
+  color: #555;
+  transition: all 0.3s ease;
+  animation: slideIn 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.TaskStack ul li:hover {
+  background: #e9ecef;
+  transform: translateX(5px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.task-text {
+  flex: 1;
+}
+.completed-text {
+  text-decoration: line-through;
+  color: #777;
+}
+
+.btn-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.edit-btn,
+.delete-btn,
+.completed-btn,
+.pending-btn {
+  padding: 5px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.edit-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #45a049;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #da190b;
+}
+.completed-btn {
+  background-color: #73da3b;
+  color: white;
+}
+
+.completed-btn:hover {
+  background-color: #57b307;
+}
+.completed-btn:disabled {
+  background-color: #b6efaa;
+  color: #777;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.pending-btn {
+  background-color: #4faee5;
+  color: white;
+}
+
+.pending-btn:hover {
+  background-color: #1a5764;
+}
+.pending-btn:disabled {
+  background-color: #a8d4f0;
+  color: #777;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.filterWrapper {
+  position: relative;
+  display: inline-block;
+  color: white;
+}
+
+#filterStatus {
+  position: relative;
+  left: 34px;
+  appearance: none;
+  border-radius: 2px;
+  border: none;
+  background: transparent;
+  padding: 8px 35px 8px 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(335deg, #667eea 0%, #764ba2 100%);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.filterWrapper i {
+  position: relative;
+  /* right: 34px; */
+  top: 6%;
+  /* transform: translateY(-50%); */
+  pointer-events: none;
+}
+
+#filterStatus option {
+  background-color: white;
+  color: #333;
+  padding: 8px;
+}
+#filterStatus option[value="pending"] {
+  color: #f39c12;
+  font-weight: bold;
+}
+#filterStatus option[value="completed"] {
+  color: #3ff312;
+  font-weight: bold;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+#prev-btn,
+#next-btn,
+#limitSelect {
+  padding: 5px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#prev-btn {
+  background-color: #4faee5;
+}
+#next-btn {
+  background-color: #73da3b;
+}
+
+.limitWrapper{
+
+}
+
+#limitSelect{
+  background-color: #b6efaa;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.TaskStack ul:empty::after {
+  content: "No tasks yet. Add one above! 📝";
+  display: block;
+  text-align: center;
+  padding: 40px;
+  color: #999;
+  font-style: italic;
+}
+
+@media (max-width: 600px) {
+  .row {
+    padding: 25px;
+  }
+
+  .formSection label {
+    font-size: 16px;
+  }
+
+  .formSection input[type="text"],
+  .formSection button {
+    font-size: 14px;
+  }
+}
