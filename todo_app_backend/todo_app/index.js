@@ -30,16 +30,4 @@ app.use((err, req, res, next) => {
   });
 });
 
-db.query("SELECT 1")
-  .then(() => {
-    console.log("Db Connection succeeded");
-    app.listen(process.env.PORT, (err) => {
-      if (err) {
-        console.log("some error occured");
-      }
-      console.log(`Server running on port 5000`);
-    });
-  })
-  .catch((err) => {
-    console.log(`db connection failed \n ${err}`);
-  });
+module.exports = app;
