@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "todo_app_backend/todo_app/index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "todo_app_frontend/index.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "todo_app_backend/todo_app/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "todo_app_frontend/$1"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 const taskArr = [];
-const url = "http://localhost:5000/api/todos";
+const url = "/api/todos";
 let editingId = null;
 let btn = document.querySelector(".formSection button");
 let currentFilter = "";
