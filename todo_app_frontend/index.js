@@ -84,7 +84,7 @@ async function addTasks() {
 }
 
 function renderTask() {
-  const taskList = document.querySelector(".TaskStack ul");
+  const taskList = document.querySelector(".taskPlace");
   taskList.innerHTML = "";
 
   taskArr.map((task, index) => {

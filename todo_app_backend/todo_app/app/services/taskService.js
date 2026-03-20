@@ -20,20 +20,17 @@ module.exports.getAllTaskList = async (status, page, limit) => {
     let filterValue = [];
 
     if (status) {
-      where = `WHERE TASKSTATUS =?`;
+      where = `WHERE taskStatus=?`;
       filterValue.push(status);
     }
 
     // for get paginated row
-    let gq = `SELECT * FROM NEW_TODOS ${where} ORDER BY CREATEDAT DESC LIMIT ? OFFSET ?`;
+    let gq = `SELECT * FROM new_todos ${where} ORDER BY createdAt DESC LIMIT ? OFFSET ?`;
     let values = [...filterValue,limit, offset];
     const [rows] = await db.query(gq, values);
 
     // for get total count
-    const [countRow] = await db.query(
-      `SELECT COUNT(*) AS TOTALCOUNT FROM NEW_TODOS ${where}`,
-      filterValue,
-    );
+    const [countRow] = await db.query(`SELECT COUNT(*) AS TOTALCOUNT FROM new_todos ${where}`, filterValue);
     // const [countRow] = await db.query(
     //   `SELECT COUNT(*) AS TOTALCOUNT FROM NEW_TODOS ${where}`,
     //   value,
@@ -56,7 +53,7 @@ module.exports.getAllTaskList = async (status, page, limit) => {
 module.exports.addTasks = async (taskData) => {
   try {
     const pq =
-      "INSERT INTO NEW_TODOS(`tasks`,`taskStatus`,`statusCode`) values(?,'pending',0)";
+      "INSERT INTO new_todos(`tasks`,`taskStatus`,`statusCode`) values(?,'pending',0)";
     const values = [taskData.tasks];
     return await db.query(pq, values);
   } catch (err) {
@@ -66,7 +63,7 @@ module.exports.addTasks = async (taskData) => {
 
 module.exports.editTask = async (taskData, taskId) => {
   try {
-    const eq = `UPDATE NEW_TODOS SET TASKS=? WHERE ID =?`;
+    const eq = `UPDATE new_todos SET tasks=? WHERE id=?`;
     const value = taskData.tasks;
     return await db.query(eq, [value, taskId]);
   } catch (err) {
@@ -76,7 +73,7 @@ module.exports.editTask = async (taskData, taskId) => {
 
 module.exports.deleteTasks = async (taskId) => {
   try {
-    const dq = "DELETE FROM NEW_TODOS WHERE ID = ?";
+    const dq = "DELETE FROM new_todos WHERE id=?";
     return await db.query(dq, [taskId]);
   } catch (err) {
     throw err;
@@ -93,7 +90,7 @@ module.exports.updateTaskStatus = async (id, status) => {
     } else if (status == "rejected") {
       statusCode = 2;
     }
-    const uscq = `UPDATE NEW_TODOS SET COMPLETEDAT=?, UPDATEDAT=NOW(), TASKSTATUS=?, STATUSCODE=? WHERE ID=?`;
+    const uscq = `UPDATE new_todos SET completedAt=?, updatedAt=NOW(), taskStatus=?, statusCode=? WHERE id=?`;
     const values = [completedAt, status, statusCode, id];
     return await db.query(uscq, values);
   } catch (err) {
